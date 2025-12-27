@@ -1,0 +1,240 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <!-- Weather Information -->
+            <div class="card weather-card">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">🌤️ 当前天气</h3>
+                </div>
+                <div class="card-body">
+                    <h4 class="text-center mb-3">{{ weather.city }}</h4>
+                    <div class="weather-info">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="weather-item">
+                                    <strong>温度:</strong>
+                                    <span class="temperature">{{ weather.temperature }}°C</span>
+                                </div>
+                                <div class="weather-item">
+                                    <strong>天气:</strong>
+                                    <span>{{ weather.description }}</span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="weather-item">
+                                    <strong>湿度:</strong>
+                                    <span>{{ weather.humidity }}%</span>
+                                </div>
+                                <div class="weather-item">
+                                    <strong>风速:</strong>
+                                    <span>{{ weather.wind_speed }} m/s</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <!-- Clock -->
+            <div class="card clock-card">
+                <div class="card-header bg-success text-white">
+                    <h3 class="mb-0">🕐 当前时间</h3>
+                </div>
+                <div class="card-body text-center">
+                    <div class="clock-container">
+                        <div class="clock">
+                            <div class="clock-face">
+                                <div class="hand hour-hand" id="hour-hand"></div>
+                                <div class="hand minute-hand" id="minute-hand"></div>
+                                <div class="hand second-hand" id="second-hand"></div>
+                                <div class="center-dot"></div>
+                            </div>
+                        </div>
+                        <div class="digital-time" id="digital-time">
+                            {{ current_time.strftime('%H:%M:%S') }}
+                        </div>
+                        <div class="date-info" id="date-info">
+                            {{ current_time.strftime('%Y年%m月%d日') }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="text-center">
+                <a href="{{ url_for('home') }}" class="btn btn-secondary">返回首页</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.weather-card, .clock-card {
+    height: 100%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.weather-info {
+    padding: 20px 0;
+}
+
+.weather-item {
+    margin-bottom: 15px;
+    font-size: 1.1em;
+}
+
+.temperature {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #ff6b35;
+}
+
+.clock-container {
+    padding: 20px;
+}
+
+.clock {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 20px;
+    position: relative;
+}
+
+.clock-face {
+    width: 100%;
+    height: 100%;
+    border: 8px solid #333;
+    border-radius: 50%;
+    position: relative;
+    background: white;
+}
+
+.hand {
+    position: absolute;
+    left: 50%;
+    transform-origin: bottom center;
+    border-radius: 4px;
+}
+
+.hour-hand {
+    width: 6px;
+    height: 60px;
+    background: #333;
+    top: 40px;
+    margin-left: -3px;
+    transform: rotate({{ (current_time.hour % 12) * 30 + current_time.minute * 0.5 }}deg);
+}
+
+.minute-hand {
+    width: 4px;
+    height: 80px;
+    background: #666;
+    top: 20px;
+    margin-left: -2px;
+    transform: rotate({{ current_time.minute * 6 }}deg);
+}
+
+.second-hand {
+    width: 2px;
+    height: 90px;
+    background: #e74c3c;
+    top: 10px;
+    margin-left: -1px;
+    transform: rotate({{ current_time.second * 6 }}deg);
+}
+
+.center-dot {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background: #333;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+.digital-time {
+    font-size: 2em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+    font-family: 'Courier New', monospace;
+}
+
+.date-info {
+    font-size: 1.2em;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* Clock numbers */
+.clock-face::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+/* Add hour markers */
+.hour-marker {
+    position: absolute;
+    width: 2px;
+    height: 10px;
+    background: #333;
+    left: 50%;
+    transform-origin: center;
+}
+</style>
+
+<script>
+function updateClock() {
+    const now = new Date();
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+    const seconds = now.getSeconds();
+    
+    // Calculate angles
+    const hourAngle = (hours % 12) * 30 + minutes * 0.5;
+    const minuteAngle = minutes * 6;
+    const secondAngle = seconds * 6;
+    
+    // Update hands
+    document.getElementById('hour-hand').style.transform = `rotate(${hourAngle}deg)`;
+    document.getElementById('minute-hand').style.transform = `rotate(${minuteAngle}deg)`;
+    document.getElementById('second-hand').style.transform = `rotate(${secondAngle}deg)`;
+    
+    // Update digital time
+    document.getElementById('digital-time').textContent = 
+        now.toLocaleTimeString('zh-CN', {hour12: false});
+    
+    // Update date
+    document.getElementById('date-info').textContent = 
+        now.toLocaleDateString('zh-CN', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+}
+
+// Update clock every second
+setInterval(updateClock, 1000);
+
+// Initial update
+updateClock();
+</script>
+
+{% endblock %}
