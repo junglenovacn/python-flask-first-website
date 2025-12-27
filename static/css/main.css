@@ -1,3 +1,32 @@
 body {
-  background: #000;
+  background: #f8f9fa;
+}
+
+.weather-card, .clock-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.weather-card:hover, .clock-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.clock-face {
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
+}
+
+.weather-item strong {
+  color: #495057;
+}
+
+.navbar-brand {
+  font-weight: bold;
+}
+
+.nav-link {
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #007bff !important;
 }
