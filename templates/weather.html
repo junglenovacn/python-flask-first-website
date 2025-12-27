@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h3>Current Weather</h3>
+            </div>
+            <div class="card-body">
+                <div id="weather-info">
+                    <p>Loading weather data...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h3>Current Time</h3>
+            </div>
+            <div class="card-body">
+                <div class="clock-container">
+                    <div class="clock">
+                        <div class="clock-face">
+                            <div class="hand hour-hand"></div>
+                            <div class="hand minute-hand"></div>
+                            <div class="hand second-hand"></div>
+                            <div class="center-point"></div>
+                        </div>
+                    </div>
+                    <div id="digital-time" class="mt-3 text-center">
+                        <h4>Loading time...</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

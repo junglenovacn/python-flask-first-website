@@ -20,6 +20,10 @@ def home():
 def about():
     return render_template("about.html")
 
+@app.route('/weather', strict_slashes=False)
+def weather():
+    return render_template("weather.html")
+
 # Make sure this we are executing this file
 if __name__ == '__main__':
     app.run(debug=True)
