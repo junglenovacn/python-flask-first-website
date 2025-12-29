@@ -1,3 +1,187 @@
 body {
   background: #000;
 }
+
+/* Clock Styles */
+.clock-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.clock {
+    width: 300px;
+    height: 300px;
+    border: 10px solid #343a40;
+    border-radius: 50%;
+    position: relative;
+    background: #fff;
+}
+
+.clock-face {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform: translateY(-3px);
+}
+
+.hand {
+    width: 50%;
+    height: 6px;
+    background: #343a40;
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.hour-hand {
+    width: 35%;
+    left: 15%;
+    background: #212529;
+}
+
+.minute-hand {
+    width: 45%;
+    left: 5%;
+    background: #495057;
+}
+
+.second-hand {
+    height: 2px;
+    background: #dc3545;
+}
+
+.center-point {
+    width: 20px;
+    height: 20px;
+    background: #dc3545;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+/* Weather Styles */
+#weather-info {
+    font-size: 1.2rem;
+    padding: 1rem;
+}
+
+.weather-icon {
+    font-size: 4rem;
+    margin: 1rem 0;
+    text-align: center;
+}
+
+.weather-details {
+    margin-top: 1rem;
+}
+
+.temp-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.weather-desc {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #28a745;
+}
+
+/* Card Styling */
+.card {
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-weight: bold;
+}
+
+.card-body {
+    background: #f8f9fa;
+}
+
+/* Clock Enhancements */
+.clock {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.clock-face {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform: translateY(-3px);
+}
+
+/* Digital Time Styling */
+#digital-time {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #343a40;
+    background: white;
+    padding: 0.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Page Background */
+body {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Container Styling */
+.container {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Row Spacing */
+.row {
+    gap: 2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .clock {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .weather-icon {
+        font-size: 3rem;
+    }
+    
+    .temp-value {
+        font-size: 1.5rem;
+    }
+}

@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-5 col-md-6">
+        <div class="card">
+            <div class="card-header text-center">
+                <h3 class="mb-0">🌤️ Current Weather</h3>
+            </div>
+            <div class="card-body">
+                <div id="weather-info" class="text-center">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <p class="mt-2">Fetching weather data...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-5 col-md-6">
+        <div class="card">
+            <div class="card-header text-center">
+                <h3 class="mb-0">⏰ Current Time</h3>
+            </div>
+            <div class="card-body">
+                <div class="clock-container">
+                    <div class="clock mx-auto">
+                        <div class="clock-face">
+                            <div class="hand hour-hand"></div>
+                            <div class="hand minute-hand"></div>
+                            <div class="hand second-hand"></div>
+                            <div class="center-point"></div>
+                        </div>
+                    </div>
+                    <div id="digital-time" class="mt-4 text-center">
+                        <h4 class="text-muted">Loading time...</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
